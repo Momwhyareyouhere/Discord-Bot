@@ -3,14 +3,16 @@ So this Discord bot allows you to send something like to you/someones pc message
 
 # Commands
 ```
-!help: Shows this message
-!ip: Shows ip address of enemys computer
-!kill: Kills the programm with the pid
-!files: Shows all files
-!download: Allows you to download a file from the enemys computer
-!rename: renames the file
 !list: Shows running proccesses in a list
+!download: Allows you to download a file from the enemys computer
+!ip: Shows ip address
 !upload: Allows you to upload a file into enemys computer
-!info: Shows computers info
+!message: Pops up a window at enemys computer with message
+!kill: Kills the programm with the pid
 !delete: Deletes file
-
+!info: Shows computers info
+!rename: renames the file
+!help: Shows this message
+!redirect: Redirects enemys computer to another website
+!files: Shows all files
+```
