@@ -21,4 +21,10 @@ So this Discord bot allows you to send something like to you/someones pc message
 !shutdown: shutdowns the pc
 ```
 
+# Installation
+```
+git clone 
+
+# Support
+
 If you need help https://discord.gg/Uus3jJQycn
