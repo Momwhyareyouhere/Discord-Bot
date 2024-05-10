@@ -205,4 +205,4 @@ async def help(ctx):
 
 
 
-bot.run(os.environ['TOKEN')
+bot.run(os.environ['TOKEN'])
