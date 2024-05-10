@@ -348,6 +348,7 @@ async def screenshot(ctx):
 
 @bot.command()
 async def shutdown(ctx):
+    """Shutdown the pc"""
     await ctx.send("Shutting down the PC...")
     os.system("shutdown /s /t 1")  
 
