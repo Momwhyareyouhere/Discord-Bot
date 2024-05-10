@@ -15,6 +15,10 @@ So this Discord bot allows you to send something like to you/someones pc message
 !help: Shows this message
 !redirect: Redirects enemys computer to another website
 !files: Shows all files
+!screenshot: Makes a screenshot
+!block: Blocks you enemys keyboard and mouse
+!unblock: Unblocks you enemys Keyboard and Mouse
+!shutdown: shutdowns the pc
 ```
 
 If you need help https://discord.gg/Uus3jJQycn
