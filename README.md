@@ -23,7 +23,11 @@ So this Discord bot allows you to send something like to you/someones pc message
 
 # Installation
 ```
-git clone 
+git clone https://github.com/Momwhyareyouhere/Discord-Bot.git
+cd Discord-Bot
+pip install -r requirements.txt
+python bot.py
+```
 
 # Support
 
