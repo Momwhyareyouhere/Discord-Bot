@@ -38,6 +38,7 @@ First downwload this file [File](https://github.com/Momwhyareyouhere/Discord-Bot
 then run this command:
 ```
 chmod +x exe.sh
+export TOKEN=your_bot_token
 ./exe.sh
 ```
 
