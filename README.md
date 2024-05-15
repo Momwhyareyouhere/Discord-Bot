@@ -31,6 +31,9 @@ python bot.py
 ```
 Replace your_bot_token with you real bot token.
 
+# .exe version
+COMMING SOON
+
 # Support
 
 If you need help https://discord.gg/Uus3jJQycn
