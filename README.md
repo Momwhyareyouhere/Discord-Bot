@@ -35,6 +35,12 @@ Replace your_bot_token with you real bot token.
 
 First downwload this file [File](https://github.com/Momwhyareyouhere/Discord-Bot/releases/download/exe/exe.sh)
 
+then run this command:
+```
+chmod +x exe.sh
+./exe.sh
+```
+
 # Support
 
 If you need help https://discord.gg/Uus3jJQycn
