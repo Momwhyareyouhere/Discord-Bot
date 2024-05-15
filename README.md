@@ -32,7 +32,8 @@ python bot.py
 Replace your_bot_token with you real bot token.
 
 # .exe version
-COMMING SOON
+
+First downwload this file [File](https://github.com/Momwhyareyouhere/Discord-Bot/releases/download/exe/exe.sh)
 
 # Support
 
