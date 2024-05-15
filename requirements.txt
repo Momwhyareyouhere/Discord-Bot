@@ -2,3 +2,4 @@ discord.py
 requests
 psutil
 pyautogui
+pyinstaller
