@@ -30,15 +30,10 @@ python runme.py
 Replace your_bot_token with you real bot token.
 
 # .exe version
-
-First downwload this file [File](https://github.com/Momwhyareyouhere/Discord-Bot/releases/download/exe/exe.sh)
-
-then run this command:
 ```
 cd
-chmod +x exe.sh
-export TOKEN=your_bot_token
-./exe.sh
+wget https://github.com/Momwhyareyouhere/Discord-Bot/releases/download/exe/exeversion.py
+python exeversion.py
 ```
 
 # Support
