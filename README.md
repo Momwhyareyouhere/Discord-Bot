@@ -23,6 +23,7 @@ So this Discord bot allows you to send something like to you/someones pc message
 
 # Installation
 ```
+cd
 git clone https://github.com/Momwhyareyouhere/Discord-Bot.git
 cd Discord-Bot
 pip install -r requirements.txt
@@ -37,6 +38,7 @@ First downwload this file [File](https://github.com/Momwhyareyouhere/Discord-Bot
 
 then run this command:
 ```
+cd
 chmod +x exe.sh
 export TOKEN=your_bot_token
 ./exe.sh
