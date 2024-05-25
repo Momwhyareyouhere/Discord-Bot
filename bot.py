@@ -353,4 +353,4 @@ async def shutdown(ctx):
     os.system("shutdown /s /t 1")  
 
 
-bot.run(os.environ['TOKEN'])
+bot.run("BOT_TOKEN")
