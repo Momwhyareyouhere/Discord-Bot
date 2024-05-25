@@ -24,11 +24,8 @@ So this Discord bot allows you to send something like to you/someones pc message
 # Installation
 ```
 cd
-git clone https://github.com/Momwhyareyouhere/Discord-Bot.git
-cd Discord-Bot
-pip install -r requirements.txt
-export TOKEN=your_bot_token
-python bot.py
+wget https://github.com/Momwhyareyouhere/Discord-Bot/releases/download/classic/runme.py
+python runme.py
 ```
 Replace your_bot_token with you real bot token.
 
